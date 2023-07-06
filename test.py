@@ -1,7 +1,8 @@
 import time
 import random
+import http.server
 
-from prometheus_clinet.core import GaugeMetricFamily, CounterMetricFamily, REGISTRY
+from prometheus_client.core import GaugeMetricFamily, CounterMetricFamily, REGISTRY
 from prometheus_client import start_http_server
 
 class myustomCollector(object):
