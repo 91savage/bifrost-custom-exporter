@@ -25,8 +25,8 @@ class mycustomCollector(object):
         pass
 
 
-    def balance(self):
-        b = GaugeMetricFamily("bifrostBalance", "Balance of Stash,Controller,Relayer", labels=["stash","controller","relayer"])
+    def collect(self):
+        b = GaugeMetricFamily("bifrostBalance", "Balance of Stash,Controller,Relayer", labels=["account"])
 
         b.add_metric(["stash"], s_balance)
         b.add_metric(["controller"], c_balance)
