@@ -2,11 +2,17 @@ from web3 import Web3
 from dotenv import load_dotenv
 import os
 import time
+import requests
+
+
 
 from prometheus_client.core import GaugeMetricFamily, REGISTRY
 from prometheus_client import start_http_server, Gauge
 
+
+
 load_dotenv()
+
 
 relayerAddress = os.environ.get('relayerAddress')
 stashAddress = os.environ.get('stashAddress')
@@ -18,6 +24,7 @@ balance = round(w3.from_wei(w3.eth.get_balance(relayerAddress),'ether'),2)
 s_balance = round(w3.from_wei(w3.eth.get_balance(stashAddress),'ether'),2)
 c_balance = round(w3.from_wei(w3.eth.get_balance(controllerAddress),'ether'),2)
 r_balance = round(w3.from_wei(w3.eth.get_balance(relayerAddress),'ether'),2)
+
 
 
 class mycustomCollector(object):
@@ -32,7 +39,6 @@ class mycustomCollector(object):
         b.add_metric(["controller"], c_balance)
         b.add_metric(["relayer"],r_balance)
         yield b # b metrics 반환
-
 
 
 if __name__ == "__main__":
