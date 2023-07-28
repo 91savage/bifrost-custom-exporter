@@ -57,11 +57,11 @@ class roundCollector():
         r = GaugeMetricFamily("round", "Current, Execute, Remain Rounds", labels=["round"])
         
         r.add_metric(["current round"], cround)
-        if eround is not None :
-            pass
-        else :
+        if eround is None :
+            ## NaN 으로 출력하기
             r.add_metric(["execute round"], float('nan'))
-            
+        else :
+            r.add_metric(["execute round"], eround)
         yield r
 
 ## 스크립트가 직접 실행 되었는지 (import 되지 않았는지) 확인하는 용도로 사용
