@@ -1,0 +1,20 @@
+version: '2.18'
+
+services:
+
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+      - "9000:9000"
+    volumes:
+      - /usr/local/etc/prometheus.yml :/etc/prometheus/prometheus.yml
+
+  bifrost-custom-exporter:
+    container_name: bifrost-custom-exporter
+    image: bifrost-custom-exporter
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file: .env
