@@ -42,6 +42,7 @@ validatorStatus = bfcstaking.validatorStatus
 currentPrice = api.currentPrice
 
 
+
 class balanceCollector():
     ## metric 만들 때, __init__을  사용하여 메트릭을 초기화
     # def __init__(self):
@@ -56,6 +57,8 @@ class balanceCollector():
         b.add_metric(["relayer"], r_balance)
         ## return 과 같은데 다른점은 값들을 리스트에 저장하고 순차대로 값을 반환함. 대량 코드에 적합.
         yield b # b metrics 반환
+        
+
 
 class roundCollector():
     def collect(self):
@@ -68,16 +71,20 @@ class roundCollector():
         else :
             r.add_metric(["execute round"], eround)
         yield r
-        
+
+
+
+
+
 class stakingCollector():
     def collect(self):
         s = GaugeMetricFamily("stakingAmount", "a mount of Staked Token", labels=["staked"])
-        s.add_metric(["self staking amount"], selfStaking)
-        s.add_metric(["nominated token amount"], nominatedToken)
-        s.add_metric(["sum of staking amount"], votingPower)
+        s.add_metric(["selfStakingAmount"], round(w3.from_wei((selfStaking),'ether'),2))
+        s.add_metric(["nominatedTokenAmount"], round(w3.from_wei((nominatedToken),'ether'),2))
+        s.add_metric(["sumOfStakingAmount"], round(w3.from_wei((votingPower),'ether'),2))
         yield s
-        
 
+        
 class CountCollector():
     def collect(self):
         c = GaugeMetricFamily("totalCount", "Current Total Validator & Nominator Count", labels=["Count"])
@@ -87,7 +94,7 @@ class CountCollector():
         
 def singleMetric():
     c = Gauge("commission"," Validator Commission")
-    c.set(commission)
+    c.set(commission/ 1e+07)
     v = Gauge("ValidatorRank", "Current Validator Rank")
     v.set(rank)
     p = Gauge("currentPrice", "Current BFC Priece")
@@ -101,14 +108,14 @@ def rewardDestination():
     else :
         r.set(1)
 
-def Tier():
+def tierNode():
     t = Gauge("nodeTier", "installed node Tier (0: Full , 1: Basic)")
     if tier == "Full" :
         t.set(0)
     else :
         t.set(1)
         
-def Status():
+def statusValidator():
     v = Gauge("validatorStatus", "current Validator Status  (0: Active , 1: Inactive)")
     if validatorStatus == "Active" :
         v.set(0)
@@ -137,8 +144,8 @@ if __name__ == "__main__":
     REGISTRY.register(CountCollector())
     singleMetric()
     rewardDestination()
-    Tier()
-    Status()
+    tierNode()
+    statusValidator()
 
 
 
