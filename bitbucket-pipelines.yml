@@ -43,6 +43,7 @@ pipelines:
                 SERVER: 13.125.241.26
                 COMMAND: |
                   sudo docker pull $DOCKER_HUB_USERNAME/$DOCKER_HUB_APP:latest
+                  sudo docker compose -f ~/data/bifrost-custom-exporter/docker-compose.yml up -d
             - echo "docker pull completed"
           trigger: automatic
 
