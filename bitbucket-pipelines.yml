@@ -18,6 +18,21 @@ pipelines:
             - docker build -t $DOCKER_HUB_USERNAME/$DOCKER_HUB_APP:latest .
             - docker push $DOCKER_HUB_USERNAME/$DOCKER_HUB_APP:latest
 
+      - step:
+          name: 'docker pull & docker-compose up'
+          script:
+          - pipe: atlassian/ssh-run:0.4.3
+            variables:
+
+              SSH_USER: ubuntu
+              SERVER: 13.125.241.26
+              COMMAND: |
+                sudo docker ps -a
+                sudo docker image ls
+                sudo docker pull $DOCKER_HUB_USERNAME/$DOCKER_HUB_APP:latest
+                sudo docker image ls
+            - echo "docker pull completed"
+          trigger: automatic
 
 
 
