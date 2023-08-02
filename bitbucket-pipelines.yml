@@ -1,0 +1,24 @@
+# This is an example Starter pipeline configuration
+# Use a skeleton to build, test and deploy using manual and parallel steps
+# -----
+# You can specify a custom docker image from Docker Hub as your build environment.
+
+options:
+  docker: true
+
+pipelines:
+  branches:
+    test:
+    # 병렬 실행 하고 싶을 때
+    # - parallel:
+      - step:
+          name: 'Build and Push Docker Image'
+          script:
+            - docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD
+            - docker build -t $DOCKER_HUB_USERNAME/$DOCKER_HUB_APP:latest .
+            - docker push $DOCKER_HUB_USERNAME/$DOCKER_HUB_APP:latest
+
+
+
+
+
