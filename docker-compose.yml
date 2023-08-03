@@ -11,6 +11,7 @@ services:
       - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
       - ./config/values.yml:/etc/prometheus/values.yml
     command :
+      - '--config.file=/etc/prometheus/prometheus.yml'
       - '--web.config.file=/etc/prometheus/values.yml'
 
   bifrost-custom-exporter:
