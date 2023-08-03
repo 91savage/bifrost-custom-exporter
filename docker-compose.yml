@@ -8,7 +8,8 @@ services:
     ports:
       - "9090:9090"
     volumes:
-      - ./config:/etc/prometheus
+      - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./config/values.yml:/etc/prometheus/values.yml
     command :
       - '--web.config.file=/etc/prometheus/values.yml'
 
