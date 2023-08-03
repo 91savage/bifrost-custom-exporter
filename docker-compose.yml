@@ -10,6 +10,13 @@ services:
     volumes:
       - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
 
+  node_exporter:
+    container_name: node-exporter
+    image: prom/node-exporter
+    ports:
+      - "9100:9100"
+
+
   bifrost-custom-exporter:
     container_name: bifrost-custom-exporter
     image: cpsehun/bifrost-custom-exporter:latest
