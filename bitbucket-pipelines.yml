@@ -20,14 +20,14 @@ pipelines:
 
 
       - step:
-          name: "send docker-compose.yml"
+          name: "send docker-compose.yml & config"
           script:
             - pipe: atlassian/rsync-deploy:0.8.1
               variables:
                 USER: ubuntu
                 SERVER: 13.125.241.26
                 REMOTE_PATH: ~/data/bifrost-custom-exporter
-                LOCAL_PATH: 'docker-compose.yml .env'
+                LOCAL_PATH: 'docker-compose.yml .env config'
             - echo "Deplyment is Completed"
           trigger: automatic
 
