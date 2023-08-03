@@ -27,7 +27,7 @@ pipelines:
                 USER: ubuntu
                 SERVER: 13.125.241.26
                 REMOTE_PATH: ~/data/bifrost-custom-exporter
-                LOCAL_PATH: 'docker-compose.yml .env config '
+                LOCAL_PATH: 'docker-compose.yml .env config'
             - echo "Deployment is Completed"
           trigger: automatic
 
