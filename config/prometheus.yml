@@ -3,15 +3,18 @@ global:
 
 scrape_configs:
   - job_name: "prometheus"
-    static_configs:
-    - targets: ['13.125.241.26:9090']
+    file_sd_configs:
+    - files:
+      - "target_prometheus.json"
 
   - job_name: "node-exporter"
-    static_configs:
-    - targets: ['13.125.241.26:9100']
+    file_sd_configs:
+    - files:
+      - "target_node-exporter.json"
 
   - job_name: "bifrost-custom-exporter"
-    static_configs:
-    - targets: ['13.125.241.26:9000']
+    file_sd_configs:
+    - files:
+      - "target_custom-exporter.json"
 
   
