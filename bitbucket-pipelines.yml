@@ -27,8 +27,8 @@ pipelines:
                 USER: ubuntu
                 SERVER: 13.125.241.26
                 REMOTE_PATH: ~/data/bifrost-custom-exporter
-                LOCAL_PATH: 'docker-compose.yml .env config'
-            - echo "Deplyment is Completed"
+                LOCAL_PATH: 'docker-compose.yml .env config '
+            - echo "Deployment is Completed"
           trigger: automatic
 
 
@@ -44,6 +44,8 @@ pipelines:
                 COMMAND: |
                   sudo docker pull $DOCKER_HUB_USERNAME/$DOCKER_HUB_APP:latest
                   sudo docker compose -f ~/data/bifrost-custom-exporter/docker-compose.yml up -d
+                  sudo docker restart prometheus
+                  sudo docker restart node-exporter
             - echo "docker pull completed"
           trigger: automatic
 
