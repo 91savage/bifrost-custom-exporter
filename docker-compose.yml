@@ -8,7 +8,7 @@ services:
     ports:
       - "9990:9990"
     volumes:
-      - ./config:/etc/prometheus/
+      - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
 
   bifrost-custom-exporter:
     container_name: bifrost-custom-exporter
