@@ -8,8 +8,8 @@ services:
     ports:
       - "9090:9090"
     volumes:
-      - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
-      - ./config/ :/etc/prometheus/
+      # - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./config/:/etc/prometheus/
 
   node_exporter:
     container_name: node-exporter
