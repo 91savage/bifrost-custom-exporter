@@ -8,11 +8,8 @@ services:
     ports:
       - "9090:9090"
     volumes:
-      # - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
       - ./config/:/etc/prometheus/
-      # - ./config/target_custom-exporter.json:/etc/prometheus/target_custom-exporter.json
-      # - ./config/target_node-exporter.json:/etc/prometheus/target_node-exporter.json
-      # - ./config/target_prometheus.json:/etc/prometheus/target_prometheus.json
+
 
   node_exporter:
     container_name: node-exporter
