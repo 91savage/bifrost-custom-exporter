@@ -28,6 +28,8 @@ pipelines:
                 SERVER: 13.125.241.26
                 REMOTE_PATH: ~/data/bifrost-custom-exporter
                 LOCAL_PATH: 'docker-compose.yml .env config/'
+                ## 전송 완료 후 , 수신측에서 파일을 삭제 하는 옵션  (Default: true)
+                DELETE_FLAG: 'false'
             - echo "Deployment is Completed"
           trigger: automatic
 
