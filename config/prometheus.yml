@@ -13,6 +13,7 @@ scrape_configs:
       - "target_node-exporter.json"
 
   - job_name: "bifrost-custom-exporter"
+    scrape_interval: 2m
     file_sd_configs:
     - files:
       - "target_custom-exporter.json"
